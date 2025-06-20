@@ -15,7 +15,7 @@ Lightweight, modern frontend starter built with:
 ## 🏃‍♂️ Quick Start
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Khushkmwt/react_template
 cd client
 npm install
 npm run dev
@@ -33,12 +33,11 @@ client/
 │   ├── components/
 │   ├── pages/
 │   ├── store/
+│   ├── Server/ Axios.js
 │   ├── App.jsx
 │   └── main.jsx
 ├── index.html
 ├── vite.config.js
-├── tailwind.config.js
-├── postcss.config.js
 ├── package.json
 └── README.md
 ```
@@ -78,47 +77,28 @@ client/
 ## ✨ Vite Config (vite.config.js)
 
 ```js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000',
-    },
-  },
-});
+      '/api': {
+        target: 'http://localhost:5000', // Change this to your backend server URL
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})
+
 ```
 
 
 ---
-
-## 🖌️ Tailwind Setup
-
-### tailwind.config.js
-
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
-### postcss.config.js
-
-```js
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
-```
 
 ---
 
@@ -202,9 +182,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 ## 🎨 Global CSS – `src/index.css`
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 body {
   @apply bg-gray-50 text-gray-900;
