@@ -15,7 +15,7 @@ Lightweight, modern frontend starter built with:
 ## 🏃‍♂️ Quick Start
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Khushkmwt/react_template
 cd client
 npm install
 npm run dev
@@ -33,12 +33,11 @@ client/
 │   ├── components/
 │   ├── pages/
 │   ├── store/
+│   ├── Server/ Axios.js
 │   ├── App.jsx
 │   └── main.jsx
 ├── index.html
 ├── vite.config.js
-├── tailwind.config.js
-├── postcss.config.js
 ├── package.json
 └── README.md
 ```
@@ -100,21 +99,6 @@ export default defineConfig({
 
 
 ---
-
-## 🖌️ Tailwind Setup
-
-### tailwind.config.js
-
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
 
 ---
 
