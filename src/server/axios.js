@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: '/api', // Will be proxied
+  baseURL: '/api/api/v1', // Will be proxied
   withCredentials: true,
 });
 
