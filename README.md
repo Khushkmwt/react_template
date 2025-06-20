@@ -78,17 +78,24 @@ client/
 ## ✨ Vite Config (vite.config.js)
 
 ```js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000',
-    },
-  },
-});
+      '/api': {
+        target: 'http://localhost:5000', // Change this to your backend server URL
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})
+
 ```
 
 
@@ -107,17 +114,6 @@ export default {
   },
   plugins: [],
 }
-```
-
-### postcss.config.js
-
-```js
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
 ```
 
 ---
@@ -202,9 +198,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 ## 🎨 Global CSS – `src/index.css`
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 body {
   @apply bg-gray-50 text-gray-900;
